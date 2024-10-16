@@ -79,7 +79,7 @@ const MembersTable = ({ allJoined, goals }) => {
     //   let totalVotes = 0;
     //   UserCreatedGoals.forEach((e) => (totalVotes += e.votesCount));
     //   let info = {
-    //     name: userInfo?.fullName?.toString(),
+    //     name: userInfo?.full_name?.toString(),
     //     joinDate: element.joined_date,
     //     votePower: 1,
     //     votesReceived: votes.length,

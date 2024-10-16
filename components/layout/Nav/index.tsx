@@ -37,9 +37,11 @@ export function Nav(): JSX.Element {
    
     if (Cookies.get('loggedin') === 'true') {
       try {
-        if (await window?.aptos?.isConnected() && aptosClient) {
+        let isConnected = await window?.aptos?.isConnected();
+        if ( isConnected && aptosClient ) {
           let aptos_account = (await window.aptos.account()).address;
-          if (aptos_account !== false) {
+          console.log(userInfo)
+          if (aptos_account !== false && typeof userInfo !=="undefined" &&  userInfo != null && userInfo?.full_name != null) {
             const client = new AptosClient(config.network);
             const coinClient = new CoinClient(client); // <:!:section_1a
 
@@ -48,8 +50,8 @@ export function Nav(): JSX.Element {
             setBalance(Number(Balance) / 1e8 + ' APT');
             if (!isSigned) setSigned(true);
 
-            setAcc(userInfo?.fullName?.toString());
-            setLogo(userInfo?.imgIpfs?.toString());
+            setAcc(userInfo?.full_name?.toString());
+            setLogo(userInfo?.img_ipfs?.toString());
             setUser_id(window.userid);
             window.document.getElementById('withoutSign').style.display = 'none';
             window.document.getElementById('withSign').style.display = '';

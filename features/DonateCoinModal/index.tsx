@@ -33,7 +33,7 @@ export default function DonateCoinModal({ ideasid, daoId, goalURI, goalId, show,
     const ToastId = toast.loading('Donating....');
 
     // let feed1 = JSON.stringify({
-    //   name: userInfo?.fullName?.toString(),
+    //   name: userInfo?.full_name?.toString(),
     //   badge: 'First Donation'
     // });
 

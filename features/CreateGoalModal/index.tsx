@@ -132,7 +132,7 @@ export default function CreateGoalModal({ open, onClose, daoId }: { onClose; ope
     toast.update(ToastId, { render: 'Creating Goal...', isLoading: true });
 
     // let feed = {
-    //   name: userInfo?.fullName,
+    //   name: userInfo?.full_name,
     //   daoId: daoId,
     //   goalid: null,
     //   budget: Budget
@@ -239,7 +239,7 @@ export default function CreateGoalModal({ open, onClose, daoId }: { onClose; ope
     toast.update(toastId, { render: 'Creating Goal...', isLoading: true });
 
     // let feed = {
-    //   name: userInfo?.fullName,
+    //   name: userInfo?.full_name,
     //   daoId: daoId,
     //   goalid: null,
     //   budget: Budget

@@ -154,7 +154,7 @@ export default function CreateEventModal({ open, onClose, daoId }) {
     // console.log('======================>Creating Event');
     // toast.update(ToastId, { render: 'Creating Event...', isLoading: true });
     // let feed = {
-    //   name: userInfo?.fullName,
+    //   name: userInfo?.full_name,
     //   daoId: daoId,
     //   eventid: null,
     //   budget: Budget

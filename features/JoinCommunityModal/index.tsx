@@ -22,7 +22,7 @@ export default function JoinCommunityModal({ SubsPrice, show, onHide, address, r
     const ToastId = toast.loading('Joining charity ...');
     // let feed = JSON.stringify({
     //   daoId: daoId,
-    //   name: userInfo?.fullName?.toString(),
+    //   name: userInfo?.full_name?.toString(),
     //   daoTitle: title,
     //   userId: Number(window.userid),
     //   donated: Amount

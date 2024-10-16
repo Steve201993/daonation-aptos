@@ -24,7 +24,7 @@ export const TopCommunityMembers = ({ daoId, allJoined, goals }) => {
     //       UserCreatedGoals.forEach((e) => (totalDonations += e.reached));
     //       Members.push({
     //         userid: element.user_id,
-    //         name: userInfo?.fullName?.toString(),
+    //         name: userInfo?.full_name?.toString(),
     //         amount: Number(totalDonations)
     //       });
     //     }

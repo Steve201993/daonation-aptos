@@ -32,7 +32,7 @@ export default function PlaceHigherBidModal({ open, onClose, item, recieveWallet
     //   console.log('======================>Bidding NFT');
     //   const ToastId = toast.loading('Bidding NFT ...');
     //   let feed = {
-    //     name: userInfo?.fullName,
+    //     name: userInfo?.full_name,
     //     nftid: item.id,
     //     bidid: null
     //   };

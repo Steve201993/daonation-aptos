@@ -176,12 +176,12 @@ export default function Profile() {
         <div className="container flex w-full justify-between relative">
           <div className="flex gap-2 items-center">
             <div className="relative">
-              <Avatar className="rounded-full border border-beerus bg-gohan text-moon-80 h-20 w-20" imageUrl={UserInfo?.imgIpfs?.toString()} />
+              <Avatar className="rounded-full border border-beerus bg-gohan text-moon-80 h-20 w-20" imageUrl={userInfo?.img_ipfs?.toString()} />
               <IconButton className="absolute right-0 bottom-0 rounded-moon-i-sm" size="xs" icon={<FilesGeneric className="text-gohan" color="#ffff" />} onClick={null}></IconButton>
             </div>
 
             <div className="flex flex-col gap-2">
-              <h1 className="font-bold text-moon-32 text-piccolo">{UserInfo?.fullName?.toString()}</h1>
+              <h1 className="font-bold text-moon-32 text-piccolo">{userInfo?.full_name?.toString()}</h1>
               <h3 className="text-trunks">{signerAddress}</h3>
             </div>
           </div>

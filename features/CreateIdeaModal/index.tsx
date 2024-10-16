@@ -108,7 +108,7 @@ export default function CreateIdeaModal({ show, onClose, daoId, goalId, goal, da
     // console.log('======================>Creating Ideas');
     // toast.update(ToastId, { render: 'Creating Ideas...', isLoading: true });
     // let feed = {
-    //   name: userInfo?.fullName.toString(),
+    //   name: userInfo?.full_name.toString(),
     //   goalTitle: goal.Title,
     //   ideasid: null,
     //   daoId: daoId

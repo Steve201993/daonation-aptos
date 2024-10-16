@@ -74,8 +74,9 @@ export function AptosProvider({ children }) {
                    
                     let signerAddress =  (await window?.aptos?.account())?.address ;
                     setSignerAddress(signerAddress);
-
-                    setUserInfo(await ReadContract("userMap",Number(Cookies.get('user_id'))));
+                  let user_id = Number(Cookies.get('user_id'));
+                  let userInfo = await ReadContract("userMap",[user_id]);
+                    setUserInfo(userInfo);
                     
                 }
 
@@ -111,11 +112,11 @@ export function AptosProvider({ children }) {
 
 	}
 
-	async function ReadContract( query, args = null):Promise<MoveValue> {
+	async function ReadContract( query, arg ) {
 		const output = await aptosClient.view({
 			payload: {
 			  function: `${config.moduleAddress}::${config.moduleName}::${query}`,
-			  functionArguments: args,
+			  functionArguments: arg,
 			},
 		  });
 		  return output[0];
