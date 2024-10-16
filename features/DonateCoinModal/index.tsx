@@ -53,7 +53,7 @@ export default function DonateCoinModal({ ideasid, daoId, goalURI, goalId, show,
 
       onHide({ success: true, amount: Amount });
     }
-    // if (Coin == 'DOT') {
+    // if (Coin == 'APT') {
     //   let recipient = address;
     //   const txs = [api.tx.balances.transferAllowDeath(recipient, `${Amount * 1e12}`), api._extrinsics.ideas.addDonation(ideasid, `${Amount * 1e12}`, Number(window.userid)), api._extrinsics.feeds.addFeed(feed2, 'donation', new Date().valueOf())];
 
@@ -66,7 +66,7 @@ export default function DonateCoinModal({ ideasid, daoId, goalURI, goalId, show,
   async function LoadData() {
     // if (!api) return;
     // async function setPolkadot() {
-    //   if (Coin !== 'DOT') setCoin('DOT');
+    //   if (Coin !== 'APT') setCoin('APT');
     //   const { nonce, data: balance } = await api.query.system.account(userWalletPolkadot);
     //   setBalance((Number(balance.free.toString()) / 1e12).toString());
     // }

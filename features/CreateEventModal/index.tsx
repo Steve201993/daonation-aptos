@@ -248,7 +248,7 @@ export default function CreateEventModal({ open, onClose, daoId }) {
               <div className="flex gap-8 w-full">
                 <div className="flex flex-col gap-2 w-full">
                   <h6>
-                    Fundraise target (in DOT)
+                    Fundraise target (in APT)
                     <Required />
                   </h6>
                   {BudgetInput}

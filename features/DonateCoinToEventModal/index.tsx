@@ -7,7 +7,7 @@ import { toast } from 'react-toastify';
 declare let window;
 export default function DonateCoinToEventModal({ open, onClose, eventName, eventid, recieveWallet }) {
   const [Balance, setBalance] = useState('');
-  const [Coin, setCoin] = useState('DOT');
+  const [Coin, setCoin] = useState('APT');
   const [isLoading, setIsLoading] = useState(false);
 
 
@@ -92,8 +92,8 @@ export default function DonateCoinToEventModal({ open, onClose, eventName, event
                   <Dropdown value={Coin} onChange={setCoin} className="max-w-[100px] ">
                     <Dropdown.Select>{Coin}</Dropdown.Select>
                     <Dropdown.Options className="bg-gohan w-48 min-w-0">
-                      <Dropdown.Option value="DOT">
-                        <MenuItem >DOT</MenuItem>
+                      <Dropdown.Option value="APT">
+                        <MenuItem >APT</MenuItem>
                       </Dropdown.Option>
                     </Dropdown.Options>
                   </Dropdown>

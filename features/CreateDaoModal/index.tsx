@@ -12,12 +12,14 @@ import Required from '../../components/components/Required';
 import ColorPicker from '../../components/components/ColorPicker';
 import { CommunityService } from '../../services/communityService';
 import { useRouter } from 'next/router';
+import { useAptosContext } from '../../contexts/AptosContext'; 
 
 let addedDate = false;
 export default function CreateDaoModal({ open, onClose }) {
   const [DaoImage, setDaoImage] = useState([]);
   const [creating, setCreating] = useState(false);
   const [brandingColor, setBrandingColor] = useState('');
+  const {ReadContract,aptosClient,signerAddress,sendTransaction, showToast,parseDao} = useAptosContext();
 
   const router = useRouter();
 
@@ -92,7 +94,7 @@ export default function CreateDaoModal({ open, onClose }) {
         },
         wallet: {
           type: 'string',
-          description: '5EEeMmY9B37Zwio7Q9t9EizBK5bCX9VgKRSA49zZB8zjsuXd'
+          description: ''
         },
         user_id: {
           type: 'string',
@@ -122,21 +124,21 @@ export default function CreateDaoModal({ open, onClose }) {
 
     toast.update(toastId, { render: 'Creating Dao...', isLoading: true });
 
-    // async function onSuccess() {
-    //   setCreating(false);
+    async function onSuccess() {
+      setCreating(false);
+      let daoId = await ReadContract("DaoIds",[]);
 
-    //   const daos = await GetAllDaos();
-    //   const newDao = daos.find((dao) => dao.customUrl === CustomUrl);
+      const newDaoUnparsed =  await ReadContract("daoMap",[Number(daoId)-1]);
+      const newDao =await parseDao(newDaoUnparsed);
+      
+      await CommunityService.create({ template: '', apsosReferenceId: newDao.daoId.toString(), name: DaoTitle, imageUrl: newDao.logo, brandingColor, subdomain: CustomUrl, description: '' });
 
-    //   await CommunityService.create({ template: '', apsosReferenceId: newDao.daoId, name: DaoTitle, imageUrl: newDao.logo, brandingColor, subdomain: CustomUrl, description: '' });
+      // window.location.href = `${location.protocol}//${newDao.customUrl}.${location.host}/daos/${newDao.daoId}`;
+    }
+    
+   await sendTransaction(signerAddress,"createDao",[signerAddress,JSON.stringify(createdObject)]);
+    showToast( toastId, 'Created Successfully!', onSuccess);
 
-    //   window.location.href = `${location.protocol}//${newDao.customUrl}.${location.host}/daos/${newDao.daoId}`;
-    // }
-    // if (PolkadotLoggedIn) {
-    //   await api._extrinsics.daos.createDao(userWalletPolkadot, JSON.stringify(createdObject), {}).signAndSend(userWalletPolkadot, { signer: userSigner }, async (status) => {
-    //     showToast(status, toastId, 'Created Successfully!', onSuccess);
-    //   });
-    // }
   }
 
   function logoHandleChange(dao) {
@@ -205,7 +207,7 @@ export default function CreateDaoModal({ open, onClose }) {
             <div className="flex gap-8 w-full">
               <div className="flex flex-col gap-2 w-full">
                 <h6>
-                  Subscription Price (in DOT)
+                  Subscription Price (in APT)
                   <Required />
                 </h6>
                 {SubsPriceInput}

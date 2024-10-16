@@ -40,10 +40,10 @@ export class CommunityService {
   static async getBySubdomain(subdomain: string): Promise<ApiCommunity> {
     const response = await fetch(`/api/communities/subdomain/${subdomain}`);
 
-    if (!response.ok) {
-      window.location.href = window.location.protocol + '//' + window.location.host.split('.').splice(1).join('.') + '/joined';
-      return;
-    }
+    // if (!response.ok) {
+    //   window.location.href = window.location.protocol + '//' + window.location.host.split('.').splice(1).join('.') + '/joined';
+    //   return;
+    // }
 
     const data = await response.json();
     return data as ApiCommunity;

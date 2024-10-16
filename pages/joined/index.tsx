@@ -9,41 +9,44 @@ import CreateDaoModal from '../../features/CreateDaoModal';
 import { Dao } from '../../data-model/dao';
 import { useRouter } from 'next/router';
 import { JOINED } from '../../data-model/joined';
+import { useAptosContext } from '../../contexts/AptosContext'; 
+
 declare let window;
+
 
 export const Joined = () => {
   const [list, setList] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showCreateDaoModal, setShowCreateDaoModal] = useState(false);
+  const {ReadContract,aptosClient} = useAptosContext();
 
   const router = useRouter();
 
   useEffect(() => {
     fetchContractData();
-  }, []);
+  }, [aptosClient]);
 
   async function fetchContractData() {
-    // setLoading(true);
-    // try {
-    //   if (api) {
-    //     let allDaos = (await GetAllDaos()) as any as Dao[];
-    //     let allJoined = (await GetAllJoined()) as any as JOINED[];
-    //     const arrList = [];
-    //     allJoined.forEach((joined_dao) => {
-    //       let foundDao = (allDaos as any).filter((e) => e?.daoId == joined_dao.daoId?.toString());
-    //       if (joined_dao.user_id.toString() == window.userid.toString() && foundDao.length > 0) {
-    //         arrList.push(foundDao[0]);
-    //       }
-    //     });
-    //     if (arrList.length === 0) {
-    //       router.push('/daos');
-    //     }
-    //     setList(arrList.reverse());
-    //   }
-    // } catch (error) {
-    //   console.error('ERR', error);
-    // }
-    // setLoading(false);
+    setLoading(true);
+    try {
+      if (aptosClient) {
+        let allJoinedDaos = await ReadContract("get_all_user_joined_dao_ids",[Number(window.userid)]) as [];
+
+        let arrList = [];
+        for (let i = 0; i < allJoinedDaos.length; i++) {
+          const daoId = allJoinedDaos[i];
+          const DaoInfo = await ReadContract("daoMap",[Number(daoId)]) as {};
+          arrList.push(DaoInfo);
+        }
+        if (arrList.length === 0) {
+          router.push('/daos');
+        }
+        setList(arrList.reverse());
+      }
+    } catch (error) {
+      console.error('ERR', error);
+    }
+    setLoading(false);
   }
 
   function closeModal() {

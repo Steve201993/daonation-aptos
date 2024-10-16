@@ -40,7 +40,6 @@ export function Nav(): JSX.Element {
         let isConnected = await window?.aptos?.isConnected();
         if ( isConnected && aptosClient ) {
           let aptos_account = (await window.aptos.account()).address;
-          console.log(userInfo)
           if (aptos_account !== false && typeof userInfo !=="undefined" &&  userInfo != null && userInfo?.full_name != null) {
             const client = new AptosClient(config.network);
             const coinClient = new CoinClient(client); // <:!:section_1a
@@ -59,6 +58,9 @@ export function Nav(): JSX.Element {
             changedPath = false;
             return;
           }
+          running = false;
+          changedPath = false;
+          return;
         } else {
           running = false;
           changedPath = false;
@@ -85,7 +87,7 @@ export function Nav(): JSX.Element {
     if (acc !== '') {
       running = false;
     }
-  }, [count, router.pathname]);
+  }, [count, router.pathname,userInfo]);
 
   useEffect(() => {
     changedPath = true;

@@ -33,7 +33,7 @@ export default function JoinCommunityModal({ SubsPrice, show, onHide, address, r
       setisLoading(false);
       onHide({ success: true });
     }
-    // if (Coin == 'DOT') {
+    // if (Coin == 'APT') {
     //   toast.update(ToastId, {
     //     render: 'Joining charity....'
     //   });
@@ -50,14 +50,14 @@ export default function JoinCommunityModal({ SubsPrice, show, onHide, address, r
 
   async function LoadData(currencyChanged = false) {
     // async function setPolkadot() {
-    //   setToken('DOT');
-    //   setCoin('DOT');
+    //   setToken('APT');
+    //   setCoin('APT');
     //   const { nonce, data: balance } = await api.query.system.account(userWalletPolkadot);
     //   setBalance(Number(balance.free.toString()) / 1e12);
     // }
     // if (PolkadotLoggedIn && currencyChanged == false) {
     //   setPolkadot();
-    // } else if (currencyChanged == true && Coin == 'DOT') {
+    // } else if (currencyChanged == true && Coin == 'APT') {
     //   setPolkadot();
     // }
   }
@@ -94,7 +94,7 @@ export default function JoinCommunityModal({ SubsPrice, show, onHide, address, r
           <div className="flex flex-col gap-3 w-full p-8">
             <div className="flex justify-between pt-8">
               <h4 className="font-semibold text-moon-18">Price</h4>
-              <h4 className="font-semibold text-moon-18">{SubsPrice} DOT</h4>
+              <h4 className="font-semibold text-moon-18">{SubsPrice} APT</h4>
             </div>
 
             <>

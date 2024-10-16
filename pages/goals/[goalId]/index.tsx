@@ -27,7 +27,7 @@ export default function Goal() {
     StructureLeft: [],
     StructureRight: [],
     user_info: {
-      fullName: '',
+      full_name: '',
       id: null
     },
     reached: false,
@@ -259,7 +259,7 @@ export default function Goal() {
                     <div className="flex">
                       Created by &nbsp;
                       <a href={'/profile/' + GoalURI?.user_info?.id} className="truncate text-piccolo max-w-[220px]">
-                        {GoalURI?.user_info?.fullName.toString()}
+                        {GoalURI?.user_info?.full_name.toString()}
                       </a>
                     </div>
                   </h3>

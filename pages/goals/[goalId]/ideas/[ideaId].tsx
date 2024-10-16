@@ -299,7 +299,7 @@ export default function GrantIdeas() {
                       <div className="flex">
                         Created by &nbsp;
                         <a href={'/profile/' + IdeasURI?.user_info?.id} className="truncate text-piccolo max-w-[220px]">
-                          {IdeasURI?.user_info?.fullName}
+                          {IdeasURI?.user_info?.full_name}
                         </a>
                       </div>
                     </h3>

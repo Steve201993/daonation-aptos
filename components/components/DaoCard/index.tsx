@@ -22,11 +22,11 @@ const DAOCard = ({ item, onJoinCommunity, hasJoined, className }: { item: Dao; o
         </div>
         <div className="flex flex-1 flex-col gap-2 relative px-5 text-moon-16">
           <p className="font-semibold text-moon-18">{item.Title}</p>
-          <p>Subscription of DOT {item.SubsPrice} p/month</p>
+          <p>Subscription of APT {item.SubsPrice} p/month</p>
           <p className="hidden sm:inline-block">
             Managed by{' '}
             <a href={'/profile/' + item?.user_info?.id?.toString()} className="text-piccolo">
-              @{item?.user_info?.fullName.toString()}
+              @{item?.user_info?.full_name.toString()}
             </a>
           </p>
           {!hasAlreadyPast ? <p className="text-hit font-bold">Opens in {formattedDuration}</p> : <p className="text-hit font-bold">Opened</p>}

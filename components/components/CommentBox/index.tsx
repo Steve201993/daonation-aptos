@@ -32,8 +32,8 @@ const CommentBox = ({ address, user_info, date, message, replies = [], sendReply
     <div className="flex flex-col gap-2" key={MessageID} data-id={MessageID}>
       <div className="flex justify-between items-center">
         <div className="flex gap-1 items-center">
-          {user_info?.imgIpfs !== '' ? (
-            <img src={user_info?.imgIpfs} alt="" className="rounded-full border-2 w-12 h-12 object-cover border-piccolo" />
+          {user_info?.img_ipfs !== '' ? (
+            <img src={user_info?.img_ipfs} alt="" className="rounded-full border-2 w-12 h-12 object-cover border-piccolo" />
           ) : (
             <Avatar size="sm" className="rounded-full border border-piccolo bg-gohan">
               <GenericUser className="text-moon-24" />
@@ -41,7 +41,7 @@ const CommentBox = ({ address, user_info, date, message, replies = [], sendReply
           )}
 
           <Link className="text-piccolo max-w-[120px] truncate" href={`/profile/${user_info?.id}`} rel="noreferrer" target="_blank">
-            {user_info?.fullName?.toString()}
+            {user_info?.full_name?.toString()}
           </Link>
         </div>
         <span className="whitespace-nowrap text-trunks text-moon-14">{formatDistance(new Date(date), new Date(), { addSuffix: true })}</span>

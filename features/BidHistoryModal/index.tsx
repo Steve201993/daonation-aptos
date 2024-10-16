@@ -16,7 +16,7 @@ export default function BidHistoryModal({ open, onClose, item }: { open: boolean
     },
     {
       Header: <HeaderLabel>Wallet Address</HeaderLabel>,
-      accessor: 'walletAddress'
+      accessor: 'wallet_address'
     },
     {
       Header: <HeaderLabel>Bidder</HeaderLabel>,

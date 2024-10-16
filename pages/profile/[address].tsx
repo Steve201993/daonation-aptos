@@ -9,8 +9,12 @@ import { ProfileStats } from '../../features/SummaryPanel/Stats';
 import TransactionsPanel from '../../features/TransactionsPanel';
 import BadgesPanel from '../../features/BadgesPanel';
 import CollectiblesPanel from '../../features/CollectiblesPanel';
+import { useHtmlContext } from 'next/dist/shared/lib/html-context.shared-runtime';
+import { useAptosContext } from '../../contexts/AptosContext';
+
 
 export default function Profile() {
+  const  {userInfo} = useAptosContext();
   const [Goals, setGoals] = useState([]);
   const [Ideas, setIdeas] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -28,7 +32,6 @@ export default function Profile() {
     comment: false
   });
 
-  const [UserInfo, setUserInfo] = useState({ fullName: '', imgIpfs: [] });
   const [tabIndex, setTabIndex] = useState(0);
   const [loggedUser, setLoggedUser] = useState(false);
   const [signerAddress, setSignerAddress] = useState('');

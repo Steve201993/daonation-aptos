@@ -97,7 +97,7 @@ export default function DonateNFTModal({ open, onClose, eventName, eventid, daoi
 
     // if (PolkadotLoggedIn) {
 
-    //   const txs = [api._extrinsics.events.claimToken(Number(daoid),Number(eventid),JSON.stringify(createdObject), `${Number(price)*1e12}`,Number(window.userid),window.signerAddress, userInfo.fullName?.toString(),new Date().toLocaleDateString())];
+    //   const txs = [api._extrinsics.events.claimToken(Number(daoid),Number(eventid),JSON.stringify(createdObject), `${Number(price)*1e12}`,Number(window.userid),window.signerAddress, userInfo.full_name?.toString(),new Date().toLocaleDateString())];
 
     //   const transfer = api.tx.utility.batch(txs).signAndSend(userWalletPolkadot, { signer: userSigner }, (status) => {
     //     showToast(status, ToastId, 'Donated successfully!', () => {

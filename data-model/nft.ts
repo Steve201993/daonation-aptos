@@ -7,7 +7,7 @@ export interface Bid {
   date: string;
   bidder: string;
   bidderUserId: number;
-  walletAddress: string;
+  wallet_address: string;
   bidAmount: number;
   
 }

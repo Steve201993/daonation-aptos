@@ -41,7 +41,7 @@ export default function Events() {
     End_Date: '',
     TimeFormat: '',
     user_info: {
-      fullName: '',
+      full_name: '',
       id: null
     },
     reached: false,
@@ -168,7 +168,7 @@ export default function Events() {
                     <div className="flex">
                       Created by&nbsp;
                       <a href={'/profile/' + EventURI.user_info.id} className="truncate text-piccolo max-w-[220px]">
-                        {EventURI.user_info.fullName}
+                        {EventURI.user_info.full_name}
                       </a>
                     </div>
                   </h3>
@@ -217,7 +217,7 @@ export default function Events() {
             <div className="flex flex-col gap-5 bg-gohan rounded-xl w-full max-w-[300px] items-center p-6 pt-10 shadow-moon-lg">
               <GenericLoyalty className="text-hit text-moon-48" />
               <div className="font-bold text-moon-20">
-                Raised DOT {EventURI.reached} of {EventURI.Budget}
+                Raised APT {EventURI.reached} of {EventURI.Budget}
               </div>
               {EventURI.status == 'ended' ? (
                 <>

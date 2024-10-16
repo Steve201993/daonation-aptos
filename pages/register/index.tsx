@@ -77,7 +77,7 @@ export default function Register() {
 
   async function registerAccount() {
     const ToastId = toast.loading('Uploading IPFS ...');
-    const metadata: string = image.type ? await UploadBlob(image, true) : '';
+    const metadata: string = image.type ? await UploadBlob(image, false) : '';
     toast.update(ToastId, { render: 'Registering User...', isLoading: true });
 
     const doAfter = () => {

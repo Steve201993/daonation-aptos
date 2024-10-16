@@ -340,7 +340,7 @@ export default function CreateGoalModal({ open, onClose, daoId }: { onClose; ope
             <div className="flex gap-8 w-full">
               <div className="flex flex-col gap-2 w-full">
                 <h6>
-                  Goal amount in DOT
+                  Goal amount in APT
                   <Required />
                 </h6>
                 {BudgetInput}

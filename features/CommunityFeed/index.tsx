@@ -69,8 +69,8 @@ const CommunityFeed = ({ communityName, daoId }) => {
   }
 
   // useEffect(() => {
-  //   setAvatarUrl(userInfo.imgIpfs);
-  //   setUserName(userInfo.fullName?.toString());
+  //   setAvatarUrl(userInfo.img_ipfs);
+  //   setUserName(userInfo.full_name?.toString());
   // }, [userInfo]);
 
   // useEffect(() => {

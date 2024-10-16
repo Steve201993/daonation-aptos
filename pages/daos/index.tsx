@@ -9,6 +9,8 @@ import CreateDaoModal from '../../features/CreateDaoModal';
 import JoinCommunityModal from '../../features/JoinCommunityModal';
 import { Dao } from '../../data-model/dao';
 
+import { useAptosContext } from '../../contexts/AptosContext'; 
+
 export default function DAOs() {
   const [list, setList] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -16,32 +18,43 @@ export default function DAOs() {
   const [showJoinModal, setShowJoinModal] = useState(false);
   const [joinedDaosList, setJoinedDaosList] = useState([]);
   const [communityToJoin, setCommunityToJoin] = useState({} as Dao);
+  const {ReadContract,aptosClient,parseDao} = useAptosContext();
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [aptosClient]);
 
   async function fetchData() {
-    // if (api) {
-    //   setLoading(true);
-    //   let allDaos = await GetAllDaos();
-    //   let allJoined = await GetAllJoined();
-    //   const joinedDaosList = [];
-    //   allJoined.forEach((joined_dao) => {
-    //     let foundDao = allDaos.filter((e) => e?.daoId == joined_dao.daoId?.toString());
-    //     if (joined_dao.user_id.toString() == window.userid.toString() && foundDao.length > 0) {
-    //       joinedDaosList.push(foundDao[0]);
-    //     }
-    //   });
-    //   allDaos.forEach((dao) => {
-    //     if (Number(dao.user_id) === Number(window.userid)) {
-    //       joinedDaosList.push(dao);
-    //     }
-    //   });
-    //   setLoading(false);
-    //   setList(allDaos.reverse());
-    //   setJoinedDaosList(joinedDaosList);
-    // }
+    if (aptosClient) {
+      setLoading(true);
+      let allDaosIds = Number(await ReadContract("DaoIds",[]));
+      let allJoinedDaos = await ReadContract("get_all_user_joined_dao_ids",[Number(window.userid)]) as number[];
+
+      let allDaos = [];
+      for (let i = 0; i < allDaosIds; i++) {
+
+        const daoInfoUnparsed = await ReadContract("daoMap",[i]);
+        const daoInfo = await parseDao(daoInfoUnparsed);
+        allDaos.push(daoInfo);
+      }
+      const joinedDaosList = [];
+
+
+      allJoinedDaos.forEach((joined_dao) => {
+        let foundDao = allDaos.filter((e) => e?.daoId.toString() == joined_dao.toString());
+        if ( foundDao.length > 0) {
+          joinedDaosList.push(foundDao[0]);
+        }
+      });
+      allDaos.forEach((dao) => {
+        if (Number(dao.user_id) === Number(window.userid)) {
+          joinedDaosList.push(dao);
+        }
+      });
+      setLoading(false);
+      setList(allDaos.reverse());
+      setJoinedDaosList(joinedDaosList);
+    }
   }
 
   function closeModal(event) {

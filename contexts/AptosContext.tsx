@@ -6,6 +6,8 @@ import { Aptos, AptosConfig, Network,MoveValue } from "@aptos-labs/ts-sdk";
 import Cookies from 'js-cookie';
 import config from './json/config.json'
 import { toast } from 'react-toastify';
+import { Dao } from '../data-model/dao';
+import { UserInfo } from '../data-model/dao';
 
 
 const NETWORK=Network.DEVNET;
@@ -18,6 +20,7 @@ const AppContext = createContext({
     EasyToast:(message, type, UpdateType = false, ToastId = '', isLoading = false)=>{},
     sendTransaction:async (signerAddress, method, args = [],value=0)=>{},
     ReadContract:async (query, args = null):Promise<MoveValue>=>{return },
+    parseDao:async (daoInfo):Promise<Dao>=>{return},
     userInfo:null
 
 });
@@ -60,7 +63,34 @@ export function AptosProvider({ children }) {
             doAfter();
     
       }
-    
+      async function parseDao(daoInfo):Promise <Dao>{
+        let object = JSON.parse(daoInfo.dao_uri?.toString());
+       let originalwallet = daoInfo.dao_wallet?.toString();
+       if (object){
+        let user_info = await getUserInfoById(object.properties?.user_id?.description);
+        return ({
+          //Pushing all data into array
+          daoId: Number(daoInfo.id),
+          Title: object.properties.Title.description,
+          Start_Date: object.properties.Start_Date.description,
+          user_info:user_info,
+          user_id: object.properties?.user_id?.description,
+          logo: object.properties.logo.description?.url,
+          wallet: originalwallet,
+          recievewallet: object.properties.wallet.description,
+          recievetype: 'Aptos',
+          SubsPrice: object.properties?.SubsPrice?.description,
+          brandingColor: object.properties?.brandingColor?.description,
+          customUrl: object.properties?.customUrl?.description
+        });
+       }
+      }
+    async function getUserInfoById(userId): Promise<UserInfo >{
+      let userInfo = await ReadContract("userMap",[Number(userId)]) as UserInfo;
+      return userInfo;
+
+    }
+      
     const fetchData = async () => {
         if (Cookies.get('loggedin')=== "true") {
             try {		
@@ -75,6 +105,7 @@ export function AptosProvider({ children }) {
                     let signerAddress =  (await window?.aptos?.account())?.address ;
                     setSignerAddress(signerAddress);
                   let user_id = Number(Cookies.get('user_id'));
+                  window.userid = user_id;
                   let userInfo = await ReadContract("userMap",[user_id]);
                     setUserInfo(userInfo);
                     
@@ -127,7 +158,7 @@ export function AptosProvider({ children }) {
 		fetchData();
 	}, []);
 
-  return <AppContext.Provider value={{ aptosClient,signerAddress,sendTransaction,ReadContract,userInfo,showToast,EasyToast }}>{children}</AppContext.Provider>;
+  return <AppContext.Provider value={{ aptosClient,signerAddress,sendTransaction,ReadContract,userInfo,showToast,EasyToast,parseDao }}>{children}</AppContext.Provider>;
 }
 
 export const useAptosContext = () => useContext(AppContext);

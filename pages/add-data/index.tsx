@@ -6,7 +6,7 @@ import { Dao } from '../../data-model/dao';
 
 const AllUsers = [
   {
-    FullName: 'Zakir Hossen',
+    full_name: 'Zakir Hossen',
     Email: 'zakiristesting@gmail.com',
     Password: '12345678',
     metadata: 'https://lh3.googleusercontent.com/a/ACg8ocIMcjUA-y_lKy1GGpC5S6azg7rn2Kh84HaNKKH0D5aqlt6smg=s288-c-no'
@@ -126,7 +126,7 @@ export default function AddData() {
     //     async function onSuccess() {
     //       resolve(true);
     //     }
-    //     await api._extrinsics.users.registerUser(user.FullName, user.Email, user.Password, user.metadata).signAndSend(deriveAcc, ({ status }) => {
+    //     await api._extrinsics.users.registerUser(user.full_name, user.Email, user.Password, user.metadata).signAndSend(deriveAcc, ({ status }) => {
     //       showToast(status, ToastId, 'Registered Successfully!', onSuccess);
     //     });
     //   });

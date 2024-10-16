@@ -9,7 +9,7 @@ import { toast } from 'react-toastify';
 declare let window;
 export default function PlaceHigherBidModal({ open, onClose, item, recieveWallet }: { open: boolean; onClose: () => void; item: NFT; recieveWallet: String }) {
   const [BalanceAmount, setBalanceAmount] = useState(0);
-  const [Coin, setCoin] = useState('DOT');
+  const [Coin, setCoin] = useState('APT');
   const [isLoading, setIsLoading] = useState(false);
 
   const [Amount, AmountInput] = UseFormInput({
@@ -39,7 +39,7 @@ export default function PlaceHigherBidModal({ open, onClose, item, recieveWallet
     //   try {
     //     let bidId = Number(await api._query.events.bidIds());
     //     feed.bidid = bidId;
-    //     const txs = [api.tx.balances.transferAllowDeath(recieveWallet, `${Amount * 1e12}`), api._extrinsics.events.bidToken(`${Amount * 1e12}`, item.id, item.eventid, item.daoid, new Date().toLocaleDateString(), userInfo.fullName?.toString(), window.signerAddress, Number(window.userid)), api._extrinsics.feeds.addFeed(JSON.stringify(feed), 'bid', new Date().valueOf())];
+    //     const txs = [api.tx.balances.transferAllowDeath(recieveWallet, `${Amount * 1e12}`), api._extrinsics.events.bidToken(`${Amount * 1e12}`, item.id, item.eventid, item.daoid, new Date().toLocaleDateString(), userInfo.full_name?.toString(), window.signerAddress, Number(window.userid)), api._extrinsics.feeds.addFeed(JSON.stringify(feed), 'bid', new Date().valueOf())];
     //     await api.tx.utility.batch(txs).signAndSend(userWalletPolkadot, { signer: userSigner }, (status) => {
     //       showToast(status, ToastId, 'Bid Successful!', onSuccess);
     //     });
