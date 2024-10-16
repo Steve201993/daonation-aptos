@@ -36,8 +36,10 @@ export default function Login() {
   const fetchDataStatus = async () => {
     if (Cookies.get('loggedin' )== "true") setIsLogged(true);
     if (await window.aptos.isConnected()) {
+      setStep(2);
       setIsConnected(true);
     } else {
+      setStep(1);
       setIsConnected(false);
     }
 
@@ -71,7 +73,7 @@ export default function Login() {
       <Head>
         <title>Login</title>
         <meta name="description" content="DAOnation - Login" />
-     c   <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className={`gap-8 flex w-full bg-gohan pt-10 pb-6 border-beerus border`}>
         <div className="container flex flex-col gap-2 w-full justify-between">

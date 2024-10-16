@@ -105,7 +105,7 @@ const LoginCard = ({ step, onConnectAptos, isConnected, setIsLogged,AptosInstall
   return (
     <>
       { !isConnected && <div className="flex flex-col gap-4 w-full items-center">{AptosInstalled() ? ConnectWalletButton():InstallWalletButton()}</div>}
-      { LoginForm()}
+      { isConnected && LoginForm()}
     </>
   );
 };
